@@ -74,3 +74,11 @@ Keep the real brand name and WhatsApp number exclusively in the ignored
 .env.local file. Never put them in tracked source, example files, or documentation.
 Leave .env.example values blank and use neutral/unconfigured source fallbacks.
 The rendered brand and WhatsApp link remain visible to site visitors.
+
+## Stage 3 pull requests
+
+Every Stage 3 task must have its own pull request from its dedicated task branch.
+After the user reviews and approves the task, commit the reviewed changes, push
+that branch, and open its pull request. Do not combine independent tasks in one
+branch or pull request. Keep local business values out of all commits and PR text.
+Leave the pull request unmerged until the user explicitly authorizes merging.

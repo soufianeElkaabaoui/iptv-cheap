@@ -1,9 +1,10 @@
 # Header review — Stage 3
 
 Branch: `feat/header`. Base commit: `20da7dd`. The user reviewed and approved
-the header, including local environment configuration. No push or merge was
-performed. AGENTS.md requires a separate branch for every task
-and preserves the explicit user review gate. Only the header is implemented.
+the header, including local environment configuration, and requested a pull
+request for each Stage 3 task. This task is submitted from its dedicated branch;
+merging requires explicit user authorization. AGENTS.md records these rules.
+Only the header is implemented.
 
 ## Delivered behavior
 

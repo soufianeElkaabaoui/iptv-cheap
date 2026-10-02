@@ -76,7 +76,8 @@ committed. No remote repository or push belongs to Stage 1.
 ## Header review
 
 The header was reviewed and approved by the user on `feat/header`.
-Every task uses a separate branch; see AGENTS.md. The header links to Home and
+Every Stage 3 task uses a separate branch and pull request after user approval;
+merging requires explicit authorization. See AGENTS.md. The header links to Home and
 Blog. Future homepage anchors are added when their sections exist. Language
 switching keeps the homepage/blog context and resets blog pagination; article
 routes switch to the target language's blog listing until article translations
