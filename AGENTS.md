@@ -50,3 +50,27 @@ Remove only temporary verification artifacts.
 Verify lint, TypeScript, production build, Compose startup, routes, and ownership.
 Keep secrets, dependencies, outputs, and machine configuration out of Git.
 Performance matters; never claim an unmeasured Lighthouse score.
+
+## Current Stage 3 review gate
+
+The user approved this homepage order: hero, what is included, packages/pricing,
+compatible devices, how it works, FAQ, and final WhatsApp invitation, with shared
+Header and Footer. The first authorized implementation is the Header only.
+Add navigation destinations as their sections become available; no dead links.
+Do not implement another section before user feedback. Do not commit or push
+Stage 3 changes until the user has reviewed and authorized committing them.
+
+## Branch ownership
+
+Every task must have its own separate Git branch. Create or switch to the task
+branch before modifying tracked files; never implement a task directly on main
+or reuse another task's branch. Preserve existing uncommitted work when moving
+it to its task branch. The current header task uses feat/header. This branch
+rule does not authorize commits, pushes, or merges; honor the user's review gate.
+
+## Local business configuration
+
+Keep the real brand name and WhatsApp number exclusively in the ignored
+.env.local file. Never put them in tracked source, example files, or documentation.
+Leave .env.example values blank and use neutral/unconfigured source fallbacks.
+The rendered brand and WhatsApp link remain visible to site visitors.

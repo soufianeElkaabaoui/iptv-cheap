@@ -1,7 +1,8 @@
-# IPTV project — Stage 1
+# IPTV project
 
-Minimal Next.js App Router scaffold. No finished design, marketing content,
-articles, packages, payment flow, or animations. The Stage 1 scaffold is approved.
+Next.js App Router project. The Stage 1 scaffold is approved; the first Stage 3
+implementation is the responsive multilingual header. Other sections remain
+placeholders; no real articles, package pricing, or payment flow is published.
 The public GitHub baseline is [soufianeElkaabaoui/iptv-cheap](https://github.com/soufianeElkaabaoui/iptv-cheap),
 on branch `main`. Stage 3 begins with one requested section at a time.
 
@@ -12,7 +13,7 @@ local user who owns this folder, without sudo. Node/npm on the host are optional
 
 ```sh
 ./scripts/docker run --rm --no-deps web npm ci
-# Optional: cp .env.example .env.local, then fill only confirmed details.
+# Copy .env.example to .env.local and fill confirmed local details.
 ./scripts/docker up -d
 ./scripts/docker logs -f web
 ```
@@ -54,11 +55,16 @@ and social metadata. `next-seo` is used only for server-rendered JSON-LD. There
 are no JSON-LD article records until real content exists. Canonicals/social URLs
 are omitted until a confirmed production origin is provided. Stage 1 always
 uses noindex, blocks crawlers, and returns an empty sitemap. Enable indexing only
-after content and launch approval. No production domain or business data is set.
+after content and launch approval. The production origin and commercial details
+remain unset. Configure the brand and WhatsApp number locally.
 
-Packages and localized WhatsApp templates remain empty/unset. The URL helper
-returns `null` until a valid number and approved template are supplied. Values
-needed for links are public contact configuration, never secrets.
+Package definitions and package-specific WhatsApp templates remain empty/unset.
+Set SITE_NAME and WHATSAPP_NUMBER in the ignored `.env.local` file. The tracked
+example leaves both blank; source code contains no business-value defaults.
+The header uses a general inquiry in the selected language. Without local values,
+it shows the neutral IPTV label and disables contact. After changing environment
+values, recreate the development service with `./scripts/docker up -d`.
+These values stay out of Git, but are visible to visitors when rendered by the site.
 
 TypeScript 6 and ESLint 9 are the newest stable versions accepted by the bundled
 Next lint plugins; newer majors currently violate their peer constraints.
@@ -66,3 +72,15 @@ Next lint plugins; newer majors currently violate their peer constraints.
 Dependencies have exact versions and `package-lock.json`; use `npm ci` for a clean
 install. Node 24 LTS is pinned by image digest. Machine IDs are detected, never
 committed. No remote repository or push belongs to Stage 1.
+
+## Header review
+
+The header was reviewed and approved by the user on `feat/header`.
+Every task uses a separate branch; see AGENTS.md. The header links to Home and
+Blog. Future homepage anchors are added when their sections exist. Language
+switching keeps the homepage/blog context and resets blog pagination; article
+routes switch to the target language's blog listing until article translations
+are implemented. A native mobile disclosure works without JavaScript; GSAP
+enhances only opening motion and respects reduced-motion preferences.
+
+Header behavior and verification: [review notes](docs/header-review.md).

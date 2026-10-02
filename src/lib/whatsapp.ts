@@ -9,3 +9,8 @@ export function getWhatsAppUrl(plan: SubscriptionPackage, locale: Locale): strin
   const message = template.replaceAll("{package}", plan.name[locale]);
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
+
+export function getWhatsAppContactUrl(locale: Locale): string | null {
+  if (!whatsappConfig.number) return null;
+  return `https://wa.me/${whatsappConfig.number}?text=${encodeURIComponent(whatsappConfig.contactMessages[locale])}`;
+}

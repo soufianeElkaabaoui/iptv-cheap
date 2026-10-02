@@ -16,9 +16,9 @@ export default async function LocaleLayout({ children, params }: {
   return (
     <html lang={locale} dir={direction(locale)}>
       <body>
-        <a href="#main-content" className="sr-only focus:not-sr-only">{dictionary.skip}</a>
-        <Header />
-        <main id="main-content" className="p-6">{children}</main>
+        <a href="#main-content" className="sr-only z-50 rounded-xl bg-teal-900 text-white focus:fixed focus:start-4 focus:top-4 focus:not-sr-only focus:px-5 focus:py-3">{dictionary.skip}</a>
+        <Header locale={locale} />
+        <main id="main-content" tabIndex={-1} className="scroll-mt-28 p-6">{children}</main>
         <Footer />
       </body>
     </html>
