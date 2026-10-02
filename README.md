@@ -1,7 +1,9 @@
 # IPTV project — Stage 1
 
 Minimal Next.js App Router scaffold. No finished design, marketing content,
-articles, packages, payment flow, or animations. Stage 2/3 await review.
+articles, packages, payment flow, or animations. The Stage 1 scaffold is approved.
+The public GitHub baseline is [soufianeElkaabaoui/iptv-cheap](https://github.com/soufianeElkaabaoui/iptv-cheap),
+on branch `main`. Stage 3 begins with one requested section at a time.
 
 ## Run in WSL2
 
