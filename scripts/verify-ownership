@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+uid="$(id -u)" gid="$(id -g)"
+probe=".ownership-verification-$$-$RANDOM"
+trap 'rm -f -- "$probe"' EXIT
+./scripts/docker exec -T web sh -c 'set -C; printf "container-created\n" > "$1"' sh "$probe"
+stat -c '%U:%G (%u:%g) %n' "$probe"
+[[ "$(stat -c %u "$probe")" == "$uid" && "$(stat -c %g "$probe")" == "$gid" ]]
+printf 'local-user-edited\n' >> "$probe"
+rm -- "$probe"
+trap - EXIT
+# Inspect only. Never change ownership or permissions as a repair.
+bad="$(find . -xdev \( ! -uid "$uid" -o ! -gid "$gid" \) -print -quit)"
+if [[ -n "$bad" ]]; then
+  echo "Unexpected project owner/group: $bad" >&2
+  exit 1
+fi
+printf 'PASS: container file created, locally edited/deleted; all project files match %s:%s.\n' "$uid" "$gid"

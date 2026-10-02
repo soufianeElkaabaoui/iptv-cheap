@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+if (( $(id -u) == 0 )); then
+  echo 'Run this launcher as the intended non-root WSL user, without sudo.' >&2
+  exit 1
+fi
+export LOCAL_UID="$(id -u)" LOCAL_GID="$(id -g)"
+if [[ "$(stat -c %u .)" != "$LOCAL_UID" || "$(stat -c %g .)" != "$LOCAL_GID" ]]; then
+  echo 'Project ownership differs from this user/group. Resolve the intended account before running.' >&2
+  exit 1
+fi
+security="$(docker info --format '{{json .SecurityOptions}}')"
+if [[ "$security" == *rootless* ]]; then
+  echo 'Rootless Docker detected. Stop: its subordinate-ID mapping needs a separately verified configuration.' >&2
+  exit 1
+fi
+# userns_mode: host explicitly opts this service out of daemon userns-remap.
+# The same setting is mandatory for bootstrap/one-off docker run commands.
+mkdir -p node_modules .next .next-build .cache/npm .cache/home
+for dir in node_modules .next .next-build .cache/npm .cache/home; do
+  if [[ "$(stat -c %u "$dir")" != "$LOCAL_UID" || "$(stat -c %g "$dir")" != "$LOCAL_GID" || ! -w "$dir" ]]; then
+    echo "Directory $dir is not writable and owned by this user. Stop; do not recursively chown." >&2
+    exit 1
+  fi
+done
+env_file=".env.example"
+if [[ -f .env.local ]]; then env_file=".env.local"; fi
+exec docker compose --env-file "$env_file" "$@"
