@@ -41,3 +41,11 @@ nonessential animations and retains the same content. Prefer transforms and
 opacity, avoid expensive layout animation, and load/register additional plugins
 only when a requested section requires them. No page-wide client conversion or
 unmeasured Lighthouse claims.
+
+## Implemented header enhancement
+
+The Stage 3 header follows this pattern in HeaderNavigation: scoped useGSAP, a
+native details/summary disclosure, contextSafe toggle handling, matchMedia for
+mobile/no-preference motion, and explicit tween/listener cleanup. Essential
+navigation stays server-rendered and works without JavaScript. Reduced motion
+receives the same content without the opening effect.
