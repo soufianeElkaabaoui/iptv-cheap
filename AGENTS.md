@@ -55,17 +55,20 @@ Performance matters; never claim an unmeasured Lighthouse score.
 
 The user approved this homepage order: hero, what is included, packages/pricing,
 compatible devices, how it works, FAQ, and final WhatsApp invitation, with shared
-Header and Footer. The first authorized implementation is the Header only.
+Header and Footer. The Header is approved and merged. The current authorized
+task is the cinematic homepage Hero only.
 Add navigation destinations as their sections become available; no dead links.
 Do not implement another section before user feedback. Do not commit or push
 Stage 3 changes until the user has reviewed and authorized committing them.
+The user has reviewed and approved the current Hero and authorized its commit,
+push, and dedicated pull request. Leave that PR unmerged until explicitly authorized.
 
 ## Branch ownership
 
 Every task must have its own separate Git branch. Create or switch to the task
 branch before modifying tracked files; never implement a task directly on main
 or reuse another task's branch. Preserve existing uncommitted work when moving
-it to its task branch. The current header task uses feat/header. This branch
+it to its task branch. The current hero task uses feat/hero. This branch
 rule does not authorize commits, pushes, or merges; honor the user's review gate.
 
 ## Local business configuration
@@ -82,3 +85,25 @@ After the user reviews and approves the task, commit the reviewed changes, push
 that branch, and open its pull request. Do not combine independent tasks in one
 branch or pull request. Keep local business values out of all commits and PR text.
 Leave the pull request unmerged until the user explicitly authorizes merging.
+
+## Current Hero layout decision
+
+The user replaced the earlier cinematic room/scroll fallback with the layout
+shown in their uploaded video. The latest revision uses the approved teal/stone
+palette and a dark featured-artwork panel spanning the entire viewport width,
+side-aligned copy, WhatsApp action, and selectable thumbnails. Remove the pale
+blue framing and decorative outer orbs; keep the movie artwork.
+In narrow viewports preserve the main artwork subject, rather than simply
+aligning a full-height crop. Use a bounded artwork area above the copy with a
+right-biased crop, lighter overlay, and no image mirroring in either direction.
+Short landscape viewports contain the full image. Preserve the desktop crop,
+composition, and RTL mirroring. Restrict artwork zoom to desktop so it does not
+crop the mobile subject; keep the accessible text entrance and crossfade.
+Use clean artwork crops from the supplied reference; they are decorative themes,
+not a confirmed streaming catalog. The user authorized a transparent Header
+over the Hero; restore its approved white surface after the Hero passes below
+the header, and on other routes. Preserve the approved navigation and white
+mobile menu panel. Without JS keep the white header usable. Do not add
+invented movie availability, playback/download flows, sign-in, ratings, pricing,
+or recommended catalog sections. Use scoped GSAP for entrance/artwork motion,
+manual selection, and static no-JS/reduced-motion fallbacks. No scroll pinning.

@@ -49,3 +49,24 @@ native details/summary disclosure, contextSafe toggle handling, matchMedia for
 mobile/no-preference motion, and explicit tween/listener cleanup. Essential
 navigation stays server-rendered and works without JavaScript. Reduced motion
 receives the same content without the opening effect.
+
+## Implemented reference-based hero
+
+HeroEntrance keeps the server-rendered copy and contact visible and adds a short,
+transform-only entrance. HeroShowcase renders decorative images and thumbnails
+on the server, then enhances manual artwork selection after hydration.
+
+Selected images crossfade using CSS with motion-reduce:transition-none. A scoped
+useGSAP/matchMedia setup adds a small transform-only desktop artwork settle and reverts
+it on selection changes, preference changes, and unmount. No autoplay, timers,
+scroll listeners, pinning, global GSAP cleanup, or ScrollTrigger import is needed
+for this layout. Inactive artwork and selector focus remain independent.
+
+Below 1024 pixels the artwork has its own bounded area above the copy. These
+viewports skip artwork zoom so important parts of the subject remain in frame;
+the text entrance and reduced-motion crossfade behavior stay the same.
+
+HeaderSurface uses native IntersectionObserver and ResizeObserver to follow the
+hero boundary without continuous scroll handlers or a GSAP plugin. This is a
+surface change with no animation. Observers disconnect on route changes/unmount;
+the approved white surface remains the server/no-JavaScript fallback.

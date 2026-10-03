@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Hero } from "@/components/sections/home/Hero";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -13,6 +13,5 @@ export async function generateMetadata({ params }: Props) {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  const dictionary = getDictionary(locale);
-  return <><h1>{dictionary.scaffold}</h1><Link className="underline" href={`/${locale}/blog`}>{dictionary.blog}</Link></>;
+  return <Hero locale={locale} />;
 }
