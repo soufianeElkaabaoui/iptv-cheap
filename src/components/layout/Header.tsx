@@ -4,6 +4,7 @@ import { getWhatsAppContactUrl } from "@/lib/whatsapp";
 import type { Locale } from "@/i18n/config";
 import { getHeaderLabels } from "@/i18n/header";
 import { HeaderNavigation } from "./HeaderNavigation";
+import { HeaderSurface } from "./HeaderSurface";
 
 // Branding and public contact configuration remain server-rendered.
 export function Header({ locale }: { locale: Locale }) {
@@ -31,10 +32,10 @@ export function Header({ locale }: { locale: Locale }) {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white">
+    <HeaderSurface locale={locale}>
       <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:min-h-24">
         <Link href={`/${locale}`} prefetch={false} aria-label={`${brand} — ${labels.home}`}
-          className="flex min-w-0 items-center gap-3 rounded-lg py-2 text-stone-950">
+          className="flex min-w-0 items-center gap-3 rounded-lg py-2 text-stone-950 group-data-[hero-overlay=true]/header:text-white">
           <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-teal-900 text-white">
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="5" width="18" height="13" rx="3" />
@@ -46,6 +47,6 @@ export function Header({ locale }: { locale: Locale }) {
         </Link>
         <HeaderNavigation locale={locale} labels={labels} contact={contact} />
       </div>
-    </header>
+    </HeaderSurface>
   );
 }

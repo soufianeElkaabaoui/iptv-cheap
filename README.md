@@ -1,7 +1,8 @@
 # IPTV project
 
 Next.js App Router project. The Stage 1 scaffold is approved; the first Stage 3
-implementation is the responsive multilingual header. Other sections remain
+implementation is the responsive multilingual header. The reference-based homepage
+hero is now implemented on its own branch for review. Other sections remain
 placeholders; no real articles, package pricing, or payment flow is published.
 The public GitHub baseline is [soufianeElkaabaoui/iptv-cheap](https://github.com/soufianeElkaabaoui/iptv-cheap),
 on branch `main`. Stage 3 begins with one requested section at a time.
@@ -85,3 +86,29 @@ are implemented. A native mobile disclosure works without JavaScript; GSAP
 enhances only opening motion and respects reduced-motion preferences.
 
 Header behavior and verification: [review notes](docs/header-review.md).
+
+## Hero review
+
+The hero was reviewed and approved for a dedicated pull request from `feat/hero`,
+based on the merged header. Merging requires explicit authorization.
+It follows the user's uploaded layout: a dark featured panel,
+featured artwork, side-aligned copy, and a selectable thumbnail strip. The dark
+panel now fills the viewport width, using the approved teal/stone palette with
+no pale blue framing. Four small WebP artwork crops come from the supplied video.
+They are decorative themes, not published movie records or availability claims.
+
+Narrow screens give the artwork a bounded area above the copy so the main subject
+stays recognizable. Short landscape screens contain the full image; the desktop
+composition keeps its background artwork behind the introduction.
+
+The content and contact link render on the server. A small client component
+adds manual artwork selection, native button/keyboard access, and scoped GSAP
+motion. Reduced motion skips animation; without JavaScript, the first backdrop
+and working contact link remain visible with static thumbnails. No autoplay,
+video download, scroll pinning, payment flow, or catalog browsing is added.
+
+The header becomes transparent over the hero and returns to its approved white
+surface after the hero passes beneath it. Blog routes keep the original header
+appearance, and without JavaScript the white header remains usable everywhere.
+
+Behavior, asset provenance, and verification: [hero review notes](docs/hero-review.md).

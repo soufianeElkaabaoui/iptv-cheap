@@ -106,13 +106,13 @@ export function HeaderNavigation({ locale, labels, contact }: {
   }, { scope: menuRef, dependencies: [pathname], revertOnUpdate: true });
 
   const languages = (mobile: boolean) => (
-    <nav aria-label={labels.language} className={mobile ? "grid grid-cols-3 gap-2" : "flex items-center rounded-full border border-stone-200 p-1"}>
+    <nav aria-label={labels.language} className={mobile ? "grid grid-cols-3 gap-2" : "flex items-center rounded-full border border-stone-200 p-1 group-data-[hero-overlay=true]/header:border-white/25"}>
       {languageOrder.map((language) => (
         <Link key={language} prefetch={false} href={`/${language}${onBlog ? "/blog" : ""}`}
           lang={language} dir={direction(language)} aria-label={languageNames[language]}
           aria-current={language === locale ? "true" : undefined} title={labels.switchLanguage[language]}
           className={`flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 text-xs font-semibold transition-colors motion-reduce:transition-none ${
-            language === locale ? "bg-teal-900 text-white" : "text-stone-600 hover:bg-stone-100 hover:text-stone-950"}`}
+            language === locale ? "bg-teal-900 text-white" : `text-stone-600 hover:bg-stone-100 hover:text-stone-950 ${mobile ? "" : "group-data-[hero-overlay=true]/header:text-stone-200 group-data-[hero-overlay=true]/header:hover:bg-white/10 group-data-[hero-overlay=true]/header:hover:text-white"}`}`}
           {...(mobile ? { "data-menu-item": "" } : {})}>
           {mobile ? languageNames[language] : language.toUpperCase()}
         </Link>
@@ -126,7 +126,7 @@ export function HeaderNavigation({ locale, labels, contact }: {
         {navigation.map((item, index) => <Link key={item.href} ref={index === 0 ? desktopHomeRef : undefined}
           prefetch={false} href={item.href} aria-current={item.active ? "page" : undefined}
           className={`inline-flex min-h-11 items-center border-b-2 px-1 text-sm font-medium transition-colors motion-reduce:transition-none ${
-            item.active ? "border-teal-800 text-teal-900" : "border-transparent text-stone-600 hover:border-stone-300 hover:text-stone-950"}`}>
+            item.active ? "border-teal-800 text-teal-900 group-data-[hero-overlay=true]/header:border-teal-300 group-data-[hero-overlay=true]/header:text-white" : "border-transparent text-stone-600 hover:border-stone-300 hover:text-stone-950 group-data-[hero-overlay=true]/header:text-stone-200 group-data-[hero-overlay=true]/header:hover:text-white"}`}>
           {item.label}
         </Link>)}
       </nav>
@@ -134,7 +134,7 @@ export function HeaderNavigation({ locale, labels, contact }: {
       <div className="hidden lg:block">{contact}</div>
       <details ref={menuRef} className="group lg:hidden">
         <summary ref={summaryRef} aria-controls={menuId}
-          className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full border border-stone-200 bg-stone-50 text-stone-800 transition-colors hover:bg-stone-100 motion-reduce:transition-none [&::-webkit-details-marker]:hidden">
+          className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full border border-stone-200 bg-stone-50 text-stone-800 transition-colors hover:bg-stone-100 motion-reduce:transition-none group-data-[hero-overlay=true]/header:border-white/25 group-data-[hero-overlay=true]/header:bg-white/10 group-data-[hero-overlay=true]/header:text-white group-data-[hero-overlay=true]/header:hover:bg-white/20 [&::-webkit-details-marker]:hidden">
           <MenuIcon /><MenuIcon close />
           <span className="sr-only">{labels.menu}</span>
         </summary>
